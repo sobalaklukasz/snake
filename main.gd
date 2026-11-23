@@ -39,6 +39,8 @@ var clock := 0.0                 # for the food pulse
 var swipe_from := Vector2.ZERO
 var swiping := false
 
+# Filled in when deploying (see .github/workflows/deploy.yml), "dev" for local builds
+var version := str(ProjectSettings.get_setting("application/config/version", "")).strip_edges()
 var uploads_enabled := true
 var record_request: HTTPRequest
 var upload_request: HTTPRequest
@@ -47,6 +49,8 @@ var loading_record := false
 
 func _ready() -> void:
 	randomize()
+	if version.is_empty():
+		version = "dev"
 	load_best()
 	# Local test builds must never write fake scores to the shared record
 	uploads_enabled = not is_local_test()
@@ -197,8 +201,9 @@ func _draw() -> void:
 	var origin := Vector2(floorf((size.x - board) / 2), top + floorf((size.y - top - margin - board) / 2))
 
 	# Header: title, score, your best on the left, world record on the right
-	draw_string(font, Vector2(0, 60), "SNAKE", HORIZONTAL_ALIGNMENT_CENTER, size.x, 44, GOLD)
-	draw_string(font, Vector2(0, 120), "Score  %d" % score, HORIZONTAL_ALIGNMENT_CENTER, size.x, 34, Color.WHITE)
+	draw_string(font, Vector2(0, 58), "SNAKE", HORIZONTAL_ALIGNMENT_CENTER, size.x, 44, GOLD)
+	draw_string(font, Vector2(0, 84), version, HORIZONTAL_ALIGNMENT_CENTER, size.x, 16, Color(1, 1, 1, 0.5))
+	draw_string(font, Vector2(0, 130), "Score  %d" % score, HORIZONTAL_ALIGNMENT_CENTER, size.x, 34, Color.WHITE)
 	draw_string(font, Vector2(margin, 40), "Your best", HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Color(1, 1, 1, 0.7))
 	draw_string(font, Vector2(margin, 72), str(best), HORIZONTAL_ALIGNMENT_LEFT, -1, 30, Color.WHITE)
 	draw_string(font, Vector2(0, 40), "World record", HORIZONTAL_ALIGNMENT_RIGHT, size.x - margin, 20, Color(GOLD, 0.8))
