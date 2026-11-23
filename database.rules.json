@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "records": {
+      ".read": true,
+      "snake": {
+        ".write": "newData.exists()",
+        ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100000000 && (!data.exists() || newData.val() > data.val())"
+      }
+    }
+  }
+}

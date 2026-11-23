@@ -17,7 +17,7 @@ const BODY_COLOR := Color("#5fbf3f")
 const HEAD_COLOR := Color("#9be870")
 
 # World record shared by everyone. The database rules only accept a higher number.
-const RECORD_URL := "https://auuuuu-83d66-default-rtdb.europe-west1.firebasedatabase.app/records/snake.json"
+const RECORD_URL := "https://snake-45897-default-rtdb.europe-west1.firebasedatabase.app/records/snake.json"
 const RECORD_REFRESH := 15.0     # seconds between record checks
 const SAVE_PATH := "user://save.cfg"  # in a browser this lives in the site's local storage
 
