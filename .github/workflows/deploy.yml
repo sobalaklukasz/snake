@@ -48,6 +48,7 @@ jobs:
           mkdir -p ~/.local/share/godot/export_templates
           ln -sfn ~/godot/templates ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
           mkdir -p build/web
+          touch build/.gdignore   # keep Godot from importing its own output
           ~/godot/godot --headless --import || true
           ~/godot/godot --headless --export-release "Web" build/web/index.html
           test -f build/web/index.wasm

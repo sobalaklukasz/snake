@@ -9,6 +9,9 @@ config/name="Snake"
 config/description="Classic snake with a world record kept in Firebase"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+; Plain black loading screen instead of the Godot logo
+boot_splash/show_image=false
+boot_splash/bg_color=Color(0, 0, 0, 1)
 
 [display]
 
