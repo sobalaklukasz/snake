@@ -1,0 +1,3 @@
+# Godot's cache and the exported game
+.godot/
+build/
